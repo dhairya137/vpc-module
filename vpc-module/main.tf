@@ -4,7 +4,15 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = "${var.vpc_name}"
+    Name = "${var.vpc_name}+1"
+  }
+
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [
+      cidr_block,
+      tags,
+    ]
   }
 }
 
@@ -17,7 +25,14 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${element(var.availability_zones, count.index)}-public-subnet"
+    Name = "${element(var.availability_zones, count.index)}-public-subnet+1"
+  }
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [
+      cidr_block,
+      tags,
+    ]
   }
 }
 
@@ -29,7 +44,14 @@ resource "aws_subnet" "private_subnet" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "${element(var.availability_zones, count.index)}-private-subnet"
+    Name = "${element(var.availability_zones, count.index)}-private-subnet+1"
+  }
+  lifecycle {
+    prevent_destroy = true
+    ignore_changes = [
+      cidr_block,
+      tags,
+    ]
   }
 }
 
@@ -53,6 +75,11 @@ resource "aws_nat_gateway" "nat" {
   subnet_id     = element(aws_subnet.public_subnet.*.id, 0)
   tags = {
     "Name" = "${var.vpc_name}-nat"
+  }
+  lifecycle {
+    ignore_changes = [
+      allocation_id,
+    ]
   }
 }
 

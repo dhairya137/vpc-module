@@ -1,3 +1,5 @@
+# In here we pass values by default or pass as args in modules. This are right side values in module.
+
 variable "region" {
   type    = string
   default = "us-east-1"
@@ -7,7 +9,7 @@ locals {
   production_availability_zones = ["${var.region}a", "${var.region}b", "${var.region}c"]
 }
 
-variable "vpc_name" {
+variable "vpc_name1" {
   type    = string
   default = "myVPC"
 }

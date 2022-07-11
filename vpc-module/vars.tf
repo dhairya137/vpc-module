@@ -1,3 +1,4 @@
+# This is just definition of the variables. Which will be passed in modules. This are left side values in module.
 variable "vpc_name" {
   type        = string
   description = "Name of our vpc"
