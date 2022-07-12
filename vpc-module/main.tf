@@ -4,16 +4,16 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = "${var.vpc_name}+1"
+    Name = "${terraform.workspace}-${var.vpc_name}"
   }
 
-  lifecycle {
-    prevent_destroy = true
-    ignore_changes = [
-      cidr_block,
-      tags,
-    ]
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  #   ignore_changes = [
+  #     cidr_block,
+  #     tags,
+  #   ]
+  # }
 }
 
 resource "aws_subnet" "public_subnet" {
@@ -25,15 +25,15 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${element(var.availability_zones, count.index)}-public-subnet+1"
+    Name = "${element(var.availability_zones, count.index)}-public-subnet-${terraform.workspace}"
   }
-  lifecycle {
-    prevent_destroy = true
-    ignore_changes = [
-      cidr_block,
-      tags,
-    ]
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  #   ignore_changes = [
+  #     cidr_block,
+  #     tags,
+  #   ]
+  # }
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -44,15 +44,15 @@ resource "aws_subnet" "private_subnet" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = "${element(var.availability_zones, count.index)}-private-subnet+1"
+    Name = "${element(var.availability_zones, count.index)}-private-subnet-${terraform.workspace}"
   }
-  lifecycle {
-    prevent_destroy = true
-    ignore_changes = [
-      cidr_block,
-      tags,
-    ]
-  }
+  # lifecycle {
+  #   prevent_destroy = true
+  #   ignore_changes = [
+  #     cidr_block,
+  #     tags,
+  #   ]
+  # }
 }
 
 #IGW
@@ -76,11 +76,11 @@ resource "aws_nat_gateway" "nat" {
   tags = {
     "Name" = "${var.vpc_name}-nat"
   }
-  lifecycle {
-    ignore_changes = [
-      allocation_id,
-    ]
-  }
+  # lifecycle {
+  #   ignore_changes = [
+  #     allocation_id,
+  #   ]
+  # }
 }
 
 resource "aws_route_table" "private" {
