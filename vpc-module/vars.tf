@@ -26,3 +26,7 @@ variable "availability_zones" {
   type        = list(any)
   description = "AZ in which all the resources will be deployed"
 }
+
+# variable "s3_state_bucket" {
+#   type = string
+# }
