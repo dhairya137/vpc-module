@@ -1,11 +1,12 @@
 terraform {
     backend "s3" {
       bucket = "dp-tfstate"
-      key    = "dev/myVPC/test-terraform.tfstate"
+      key    = "myVPC/test-terraform.tfstate"
       region = "ap-south-1"
       shared_credentials_file = "~/.aws/credentials"
       profile = "dhairya"
     }
+
 
   required_providers {
     aws = {
