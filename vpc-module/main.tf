@@ -1,8 +1,8 @@
 provider "aws" {
   region  = var.region
-  assume_role {
-    role_arn = "arn:aws:iam::571653956102:role/CodeBuildRoleTF"
-  }
+  # assume_role {
+  #   role_arn = "arn:aws:iam::571653956102:role/CodeBuildRoleTF"
+  # }
 }
 
 resource "aws_vpc" "vpc" {
