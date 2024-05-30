@@ -3,8 +3,6 @@ terraform {
       bucket = "dp-tfstate137"
       key    = "myVPC/test-terraform.tfstate"
       region = "us-east-1"
-      # shared_credentials_file = "~/.aws/credentials"
-      # profile = "dhairya"
     }
 
 

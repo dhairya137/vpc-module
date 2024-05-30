@@ -1,7 +1,8 @@
 provider "aws" {
-  # profile = "default"
-  profile = "dhairya"
   region  = var.region
+  assume_role {
+    role_arn = "arn:aws:iam::571653956102:role/service-role/codebuild-terraform-deploy-service-role"
+  }
 }
 
 resource "aws_vpc" "vpc" {
