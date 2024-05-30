@@ -13,4 +13,4 @@ phases:
   build:
     commands:
       - echo "Applying Terraform plan..."
-      - terraform apply -auto-approve tfplan.binary
+      - terraform apply -var-file="vars/main.tfvars" -auto-approve tfplan.binary
