@@ -28,3 +28,4 @@ artifacts:
   files:
     - tfplan.binary
     - tfplan.json
+    - buildspec_apply.yml
