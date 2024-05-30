@@ -1,5 +1,10 @@
 version: 0.2
 
+# env:
+#   variables:
+#     CODE_SRC_DIR: "."
+#     # TF_VERSION: "1.6.4"
+
 phases:
   install:
     runtime-versions:
@@ -26,8 +31,4 @@ phases:
       - checkov -f tfplan.json || echo "Checkov scan failed, but continuing..."
 artifacts:
   files:
-    - tfplan.binary
-    - tfplan.json
-    - .terraform/**
-    - .terraform.lock.hcl
-    - buildspec_apply.yml
+    - "**/*"
