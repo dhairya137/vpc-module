@@ -10,6 +10,10 @@ phases:
       - unzip terraform.zip
       - mv terraform /usr/local/bin/
       - rm terraform.zip
+  pre_build:
+    commands:
+      - echo "Reinitializing Terraform..."
+      - terraform init -lockfile=readonly
   build:
     commands:
       - echo "Applying Terraform plan..."
