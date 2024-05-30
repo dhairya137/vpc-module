@@ -14,7 +14,7 @@ phases:
     commands:
       - echo "Applying Terraform plan..."
       # - terraform apply -var-file="vars/main.tfvars" -auto-approve tfplan.binary
-      - terraform apply --auto-approve
+      - terraform apply -var-file="vars/main.tfvars" --auto-approve
 # version: 0.2
 
 # phases:
