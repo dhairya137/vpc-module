@@ -31,9 +31,16 @@ phases:
       - terraform show -json tfplan.binary > tfplan.json
       - echo "Running Checkov scan..."
       - checkov -f tfplan.json || echo "Checkov scan failed, but continuing..."
+  # post_build:
+  #   commands:
+  #     - echo "Uploading tfplan.json to S3..."
+  #     - aws s3 cp tfplan.json s3://${S3_BUCKET}/${S3_KEY}
   post_build:
     commands:
       - echo "Uploading tfplan.json to S3..."
+      - DATE=$(date +%Y-%m-%d)
+      - TIME=$(date +%H-%M-%S)
+      - S3_KEY="plans/${DATE}/${TIME}/tfplan.json"
       - aws s3 cp tfplan.json s3://${S3_BUCKET}/${S3_KEY}
 artifacts:
   files:
